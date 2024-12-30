@@ -21,7 +21,7 @@ pkg install git -y
 git clone https://github.com/DARK-H4CKER01/Code-Generator.git
 ```
 ```
-cd Code-Generator
+cd DX-CODE
 ```
 ```
 chmod +x *
@@ -33,7 +33,7 @@ bash install.sh
 ### RUN :
 
 ```
-code
+dx
 ```
 
 <details id="missing-code-coverage">
