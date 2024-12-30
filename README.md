@@ -1,4 +1,4 @@
-<h2 align="center"> <img src="https://raw.githubusercontent.com/DARK-H4CKER01/Code-Generator/refs/heads/main/Screenshot_20241223_041141_Termux.jpg" width="470" /> </h2>
+<h2 align="center"> <img src="https://github.com/DARK-H4CKER01/DX-CODE/blob/main/Dx-Code.jpg" width="470" /> </h2>
 
 <p align="center">
 
