@@ -18,7 +18,7 @@ apt upgrade -y
 pkg install git -y
 ```
 ```
-git clone https://github.com/DARK-H4CKER01/Code-Generator.git
+git clone https://github.com/DARK-H4CKER01/DX-CODE.git
 ```
 ```
 cd DX-CODE
