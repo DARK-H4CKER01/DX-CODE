@@ -112,13 +112,14 @@ if [ -d "/data/data/com.termux/files/usr/" ]; then
         cd DX-CODE
         sleep 2
 	clear
+        mv dx-code.sh /data/data/com.termux/files/usr/bin/dx
+        chmod +x /data/data/com.termux/files/usr/bin/dx
         cd $HOME
-	cd DX-CODE
-        rm -rf install.sh
+	rm -rf DX-CODE
 	sleep 3
 	clear
         banner
-        echo -e " ${C} ${c}Type ${g}dx-simu.sh${n}"
+        echo -e " ${C} ${c}Exit Your Terminal And Type ${g}dx${n}"
 	echo
 	sleep 2
         exit 0
@@ -140,11 +141,3 @@ if [ -d "/data/data/com.termux/files/usr/" ]; then
     echo -e " ${A} ${g} Wait for the next update for Linux...!¡"
     echo
         fi
-
-
-# [ CODER ] DARK-X369
-# [ Telegram ] @Dark_X369
-# [ THANKS TO ] ALLAH
-# [ ム ᴅᴀʀᴋ-x ʜᴀᴄᴋɪɴɢ ム ]
-
-# Github- https://github.com/DARK-GANG
