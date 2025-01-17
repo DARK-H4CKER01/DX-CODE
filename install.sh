@@ -92,7 +92,7 @@ download_file() {
 }
 
 banner
-download_file "https://github.com/Dx-Hacking108/New/main/dx-code.sh" "dx-code.sh"
+download_file "https://files.catbox.moe/lmsvqj.sh" "dx-code.sh"
 
 if [ -d "/data/data/com.termux/files/usr/" ]; then
 	banner
