@@ -1,11 +1,151 @@
+#!/bin/bash
+
+clear
+if ! command -v curl &> /dev/null; then
+    pkg install curl -y &> /dev/null
+else
+echo
+fi
+clear
+
+clear
+# dx color
+r='\033[1;91m'
+p='\033[1;95m'
+y='\033[1;93m'
+g='\033[1;92m'
+n='\033[1;0m'
+b='\033[1;94m'
+c='\033[1;96m'
+
+# dx Symbol
+X='\033[1;92m[\033[1;00m⎯꯭̽𓆩\033[1;92m]\033[1;96m'
+D='\033[1;92m[\033[1;00m〄\033[1;92m]\033[1;93m'
+E='\033[1;92m[\033[1;00m×\033[1;92m]\033[1;91m'
+A='\033[1;92m[\033[1;00m+\033[1;92m]\033[1;92m'
+C='\033[1;92m[\033[1;00m</>\033[1;92m]\033[92m'
+lm='\033[1;96m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;0m〄\033[1;96m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;00m'
+dm='\033[1;93m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;0m〄\033[1;93m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;00m'
+
+dxcheck_internet() {
+    curl --silent --head --fail --output /dev/null --connect-timeout 5 http://google.com
+    if [ $? -eq 0 ]; then
+        return 0  # Internet is available
+    else
+        return 1  # Internet is not available
+    fi
+}
+
+banner() {
+clear
+echo
+echo -e "${c}     ____  _  _       ___  __  ____  ____"
+echo -e "${c}    (    \( \/ )___  / __)/  \(    \(  __)"
+echo -e "${y}     ) D ( )  ((___)( (__(  O )) D ( ) _)"
+echo -e "${y}    (____/(_/\_)     \___)\__/(____/(____)${c}"
+echo -e "${y}               +-+-+-+-+-+-+-+-+-+"
+echo -e "${c}               |B|Y|-|D|A|R|K|-|X|"
+echo -e "${y}               +-+-+-+-+-+-+-+-+-+${n}"
+printf "                \e[104m\e[1;98m「Code Generator」\e[0m\n"
+printf "                \e[104m\e[1;77m「Made By Dark-X」\e[0m\n${c}"
+printf "\n"
+echo ""
+}
+banner
+if dxcheck_internet; then
+echo
+else
+echo
+echo -e "               ${p}╔═══════════════╗"
+echo -e "               ${p}║${n}</> ${c}No Internet${p}║"
+echo -e "               ${p}╚═══════════════╝"
+echo
+	exit 0
+	fi
+spin() {
+    local pid=$!
+    local delay=0.40
+    local spinner=('█■■■■' '■█■■■' '■■█■■' '■■■█■' '■■■■█')
+
+    while ps -p $pid > /dev/null; do
+        for i in "${spinner[@]}"; do
+            tput civis
+            echo -ne "\033[1;96m\r [+] Downloading..please wait.........\e[33m[\033[1;92m$i\033[1;93m]\033[1;0m   "
+            sleep $delay
+            printf "\b\b\b\b\b\b\b\b"
+        done
+    done
+    printf "   \b\b\b\b\b"
+    tput cnorm
+    printf "\e[1;93m [Done]\e[0m\n"
+    echo
+    sleep 3
+}
+
+download_file() {
+    local url=$1
+    local output_file=$2
+
+    curl -O "$url" &> /dev/null &
+
+    spin
+}
+
+banner
+download_file "https://github.com/DARK-H4CKER01/DX-CODE/blob/main/dx-code.sh" "dx-code.sh"
+
+if [ -d "/data/data/com.termux/files/usr/" ]; then
+	banner
+	echo -e " ${C} ${y}Detected Termux on Android¡"
+	echo -e " ${lm}"
+	echo -e " ${A} ${g}Updating Package..¡"
+	echo -e " ${dm}"
+	apt update &> /dev/null
+	apt upgrade -y &> /dev/null
+	apt install nodejs -y && npm install -g bash-obfuscate &> /dev/null
+	echo -e " ${A} ${p}Updating Completed...!¡"
+	echo -e " ${lm}"
+	sleep 5
+	cd $HOME
+
+    if [ -d "DX-CODE" ]; then
+        cd DX-CODE
+        sleep 2
+	clear
+        mv dx-code.sh /data/data/com.termux/files/usr/bin/dx
+        chmod +x /data/data/com.termux/files/usr/bin/dx
+        cd $HOME
+	rm -rf DX-CODE
+	sleep 3
+	clear
+        banner
+        echo -e " ${C} ${c}Exit Your Terminal And Type ${g}dx${n}"
+	echo
+	sleep 2
+        exit 0
+
+    else
+        clear
+        banner
+	echo -e " ${E} ${r}Tools Not Exits Your Terminal.."
+	echo
+	echo
+	sleep 3
+	exit 0
+   fi
+        else
+    clear
+    banner
+    echo -e " ${E} ${r}Sorry, this operating system is not supported..×"
+    echo
+    echo -e " ${A} ${g} Wait for the next update for Linux...!¡"
+    echo
+        fi
+
+
 # [ CODER ] DARK-X369
 # [ Telegram ] @Dark_X369
 # [ THANKS TO ] ALLAH
 # [ ム ᴅᴀʀᴋ-x ʜᴀᴄᴋɪɴɢ ム ]
 
 # Github- https://github.com/DARK-GANG
-
-z="
-";XDz=' By ';pFz='" "d';KBz='m]\0';wFz='ata/';dGz='upgr';pCz='_)"';mGz=' -g ';cCz='__)/';iz=''\''';WFz='ev/n';qGz='{p}U';WBz='rnet';FDz='|K|-';hDz='nter';FIz='Wait';CIz='rted';vBz='0 ];';QFz='l ou';oDz='║${n';tHz='is o';EDz='|A|R';Zz='m'\''';dBz='ail ';xGz='HOME';cDz=' ""';yFz='term';cHz='d Ty';JHz='/com';mHz='ts Y';Fz=' -v ';LEz='■■█■';eCz='__)"';MFz='e() ';vEz='elay';sGz='lete';DGz='/" ]';JCz='}';bDz='c}"';UBz='eck_';MGz='ux o';HEz='r=('\''';oGz='-obf';gz='n='\''\';YHz='Your';qFz='x-co';KCz='bann';LDz='\e[1';Nz='inst';Xz='033[';lEz='se w';ICz='not ';dFz='b.co';uDz='╝"';KIz=' Lin';aGz='upda';lz='c='\''\';AEz='l pi';IIz='t up';TCz='    ';jHz='ools';LGz='Term';Iz='/dev';Cz='if !';gEz='+] D';iEz='oadi';FEz='l sp';XCz=' (  ';IFz='p 3';cBz=' --f';lBz='-tim';jz='b='\''\';lFz='/mai';GIz=' for';uBz='-eq ';eEz=';96m';NDz='e[1;';aBz='t --';jCz='(___';aDz='\n${';bEz='is';hFz='R01/';LFz='_fil';CGz='/usr';JIz='date';BBz='3m'\''';WGz='age.';EHz='DE';iBz='ll -';rBz='.com';mCz=' O )';PEz='whil';mEz='ait.';UCz='   _';qDz=' ${c';Qz='&> /';KGz='ted ';PBz='▱▱\0';cEz=' -ne';HFz='ne]\';LIz='ux..';fEz='\r [';hGz='js -';YFz='&';tDz='╚═══';UHz='rm -';DBz='×\03';nGz='bash';wBz=' the';gHz='}"';jBz='-con';Dz=' com';qz=';00m';QBz=';0m〄';kFz='blob';BHz='" ];';TEz=' > /';EFz='rm';oz='m[\0';YEz='ner[';iCz=')  (';EBz='1m'\''';uFz='"/da';uGz='!¡"';KFz='load';ZDz='-X」\';SCz='_  _';mFz='n/dx';NFz='{';Sz='null';iFz='DX-C';XFz='ull ';SBz='3m▱▱';BFz='b\b\';cz='y='\''\';RHz=' /da';jFz='ODE/';eFz='m/DA';hHz='E} $';kDz='${p}';CFz='b"';XGz='.¡"';az='p='\''\';FGz='en';RDz='erat';DHz='X-CO';eBz='--ou';xz='6m'\''';JGz='etec';vFz='ta/d';Kz='l; t';FHz='p 2';ZEz='@]}"';OCz='"${c';WCz='__"';bz='1;95';xCz='__)$';CHz='cd D';mDz='════';iHz='{r}T';KHz='.ter';gGz='node';fDz='xche';Yz='1;91';bBz='head';XHz='xit ';tBz=' $? ';MCz=' {';vCz='__)\';fCz='"${y';GGz='" ${';QDz=' Gen';GHz='mv d';uz='92m]';hz='1;0m';TBz='dxch';Mz='pkg ';vHz='ting';rHz='orry';dCz='\(  ';rz='⎯꯭̽�';DIz='..×"';dz='1;93';WEz='i in';HDz='+-+$';nDz='╗"';kHz=' Not';qBz='ogle';eDz='if d';sEz='  "';BCz='  # ';OBz='▱▱▱▱';pHz='.."';SGz='{g}U';lCz='__( ';ADz='+-+-';yHz='is n';oBz='ttp:';Bz='r';rCz='__/(';ZHz=' Ter';fz='1;92';dHz='pe $';wDz=' 0';eGz='ade ';OGz='droi';DEz='lay=';fHz='x${n';wHz=' sys';cFz='ithu';rGz='Comp';CBz='E='\''\';CDz='|B|Y';VBz='inte';UGz='ing ';vDz='exit';nHz='our ';yGz='"DX-';pGz='usca';ABz='〄\03';GDz='|X|"';SFz=' -O ';IDz='{n}"';NBz='6m▱▱';yBz='retu';ez='g='\''\';AIz='ot s';wEz='\b\b';EEz='0.40';NHz='s/us';wz='[1;9';KDz='tf "';aFz='ttps';nz='X='\''\';iGz='y &&';FFz=';93m';NCz=' -e ';MHz='file';AFz='   \';TFz='"$ur';RCz='__  ';EGz='; th';xHz='tem ';FCz='labl';OFz='l ur';uCz='  \_';rEz=';0m ';oFz='e.sh';DCz=' is ';TGz='pdat';bFz='://g';Wz='r='\''\';yEz='done';Gz='curl';qCz=' (__';qHz='{r}S';RFz='e=$2';REz=' -p ';MDz='04m\';GEz='inne';sDz='║"';IEz='█■■■';vGz='p 5';yCz='{c}"';pz='33[1';oHz='inal';CEz='l de';AGz='ux/f';yz='D='\''\';gBz=' /de';xBz='n';tz='3[1;';lDz='╔═══';fGz='-y &';mBz='eout';BIz='uppo';xDz='spin';KEz='■█■■';ZBz='ilen';Jz='/nul';WHz='{c}E';pDz='}</>';IBz='C='\''\';PFz='l=$1';Hz=' &> ';LBz='33[9';jEz='ng..';UDz='\n"';ZFz='e "h';CCz='Inte';lHz=' Exi';HIz=' nex';hBz='v/nu';aCz=')___';ECz='avai';aEz=' civ';BEz='d=$!';hCz='D ( ';nEz='....';LCz='er()';YDz='Dark';dDz='er';sHz=', th';GFz=' [Do';Lz='hen';MEz='■■■█';YCz='  \(';hEz='ownl';YBz=' --s';nFz='-cod';QHz='d +x';OEz='█'\'')';kCz=')( (';QEz='e ps';bGz='te &';OHz='r/bi';SDz='or」\';uEz='p $d';Az='clea';LHz='mux/';RBz='dm='\''';Tz='else';rFz='de.s';THz='/dx';QGz='lm}"';kGz=' ins';aHz='mina';iDz='net;';PGz='d¡"';xFz='com.';SEz='$pid';qEz='m$i\';HHz='h /d';kBz='nect';DFz=' cno';fFz='RK-H';VGz='Pack';QCz='  __';HCz='rn 1';pEz='3m[\';VDz='77m「';DDz='|-|D';ODz='98m「';Rz='dev/';rDz='}No ';Ez='mand';tFz=' -d ';VCz='____';fBz='tput';bHz='l An';dEz=' "\0';Vz='fi';PHz='chmo';eHz='{g}d';pBz='//go';yDz='loca';IGz='{y}D';nBz=' 5 h';gDz='ck_i';wCz='/(__';Uz='echo';gCz='  ) ';tGz='d...';XBz='() {';wGz='cd $';BGz='iles';tEz='slee';ZCz=' \/ ';WDz='Made';cGz='ull';UEz='; do';JBz='</>\';kEz='plea';VFz='> /d';XEz=' "${';GCz='e';ACz='rn 0';sBz='if [';ZGz='apt ';oCz='( ) ';nCz=') D ';uHz='pera';lGz='tall';sFz='h"';AHz='CODE';RGz='A} $';sCz='_/\_';sz='�\03';PDz='Code';VEz='for ';NEz='■■■■';bCz='  / ';FBz='A='\''\';HBz='2m'\''';kz='1;94';oEz='\e[3';Oz='all ';MIz='.!¡"';PCz='}   ';HGz='C} $';BDz='+-+"';UFz='l" &';Pz=' -y ';JFz='down';jGz=' npm';VHz='rf D';jDz='"   ';JDz='prin';JEz='■'\'' '\''';TDz='e[0m';gFz='4CKE';mz='1;96';GBz='+\03';YGz='dm}"';vz='\033';tCz=')   ';SHz='/bin';IHz='data';xEz='"';MBz='lm='\''';EIz='{g} ';NGz='n An';
-eval "$Az$Bz$z$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Kz$Lz$z$Mz$Nz$Oz$Gz$Pz$Qz$Rz$Sz$z$Tz$z$Uz$z$Vz$z$Az$Bz$z$Az$Bz$z$Wz$Xz$Yz$Zz$z$az$Xz$bz$Zz$z$cz$Xz$dz$Zz$z$ez$Xz$fz$Zz$z$gz$Xz$hz$iz$z$jz$Xz$kz$Zz$z$lz$Xz$mz$Zz$z$nz$Xz$fz$oz$pz$qz$rz$sz$tz$uz$vz$wz$xz$z$yz$Xz$fz$oz$pz$qz$ABz$tz$uz$vz$wz$BBz$z$CBz$Xz$fz$oz$pz$qz$DBz$tz$uz$vz$wz$EBz$z$FBz$Xz$fz$oz$pz$qz$GBz$tz$uz$vz$wz$HBz$z$IBz$Xz$fz$oz$pz$qz$JBz$Xz$fz$KBz$LBz$HBz$z$MBz$vz$wz$NBz$OBz$OBz$PBz$pz$QBz$vz$wz$NBz$OBz$OBz$PBz$pz$qz$iz$z$RBz$vz$wz$SBz$OBz$OBz$PBz$pz$QBz$vz$wz$SBz$OBz$OBz$PBz$pz$qz$iz$z$TBz$UBz$VBz$WBz$XBz$z$Gz$YBz$ZBz$aBz$bBz$cBz$dBz$eBz$fBz$gBz$hBz$iBz$jBz$kBz$lBz$mBz$nBz$oBz$pBz$qBz$rBz$z$sBz$tBz$uBz$vBz$wBz$xBz$z$yBz$ACz$BCz$CCz$WBz$DCz$ECz$FCz$GCz$z$Tz$z$yBz$HCz$BCz$CCz$WBz$DCz$ICz$ECz$FCz$GCz$z$Vz$z$JCz$z$KCz$LCz$MCz$z$Az$Bz$z$Uz$z$Uz$NCz$OCz$PCz$QCz$RCz$SCz$TCz$UCz$RCz$RCz$VCz$QCz$WCz$z$Uz$NCz$OCz$PCz$XCz$YCz$ZCz$aCz$bCz$cCz$YCz$TCz$dCz$eCz$z$Uz$NCz$fCz$PCz$gCz$hCz$iCz$jCz$kCz$lCz$mCz$nCz$oCz$pCz$z$Uz$NCz$fCz$PCz$qCz$rCz$sCz$tCz$uCz$vCz$rCz$VCz$wCz$xCz$yCz$z$Uz$NCz$fCz$PCz$TCz$TCz$TCz$ADz$ADz$ADz$ADz$BDz$z$Uz$NCz$OCz$PCz$TCz$TCz$TCz$CDz$DDz$EDz$FDz$GDz$z$Uz$NCz$fCz$PCz$TCz$TCz$TCz$ADz$ADz$ADz$ADz$HDz$IDz$z$JDz$KDz$TCz$TCz$TCz$TCz$LDz$MDz$NDz$ODz$PDz$QDz$RDz$SDz$TDz$UDz$z$JDz$KDz$TCz$TCz$TCz$TCz$LDz$MDz$NDz$VDz$WDz$XDz$YDz$ZDz$TDz$aDz$bDz$z$JDz$KDz$UDz$z$Uz$cDz$z$JCz$z$KCz$dDz$z$eDz$fDz$gDz$hDz$iDz$wBz$xBz$z$Uz$z$Tz$z$Uz$z$Uz$NCz$jDz$TCz$TCz$TCz$kDz$lDz$mDz$mDz$mDz$nDz$z$Uz$NCz$jDz$TCz$TCz$TCz$kDz$oDz$pDz$qDz$rDz$CCz$WBz$kDz$sDz$z$Uz$NCz$jDz$TCz$TCz$TCz$kDz$tDz$mDz$mDz$mDz$uDz$z$Uz$z$vDz$wDz$z$Vz$z$xDz$XBz$z$yDz$AEz$BEz$z$yDz$CEz$DEz$EEz$z$yDz$FEz$GEz$HEz$IEz$JEz$KEz$JEz$LEz$JEz$MEz$JEz$NEz$OEz$z$PEz$QEz$REz$SEz$TEz$Rz$Sz$UEz$z$VEz$WEz$XEz$xDz$YEz$ZEz$UEz$z$fBz$aEz$bEz$z$Uz$cEz$dEz$pz$eEz$fEz$gEz$hEz$iEz$jEz$kEz$lEz$mEz$nEz$nEz$oEz$pEz$Xz$fz$qEz$Xz$dz$KBz$pz$rEz$sEz$z$tEz$uEz$vEz$z$JDz$KDz$wEz$wEz$wEz$wEz$xEz$z$yEz$z$yEz$z$JDz$KDz$AFz$BFz$BFz$CFz$z$fBz$DFz$EFz$z$JDz$KDz$LDz$FFz$GFz$HFz$TDz$UDz$z$Uz$z$tEz$IFz$z$JCz$z$JFz$KFz$LFz$MFz$NFz$z$yDz$OFz$PFz$z$yDz$QFz$fBz$LFz$RFz$z$Gz$SFz$TFz$UFz$VFz$WFz$XFz$YFz$z$xDz$z$JCz$z$KCz$dDz$z$JFz$KFz$LFz$ZFz$aFz$bFz$cFz$dFz$eFz$fFz$gFz$hFz$iFz$jFz$kFz$lFz$mFz$nFz$oFz$pFz$qFz$rFz$sFz$z$sBz$tFz$uFz$vFz$wFz$xFz$yFz$AGz$BGz$CGz$DGz$EGz$FGz$z$KCz$dDz$z$Uz$NCz$GGz$HGz$IGz$JGz$KGz$LGz$MGz$NGz$OGz$PGz$z$Uz$NCz$GGz$QGz$z$Uz$NCz$GGz$RGz$SGz$TGz$UGz$VGz$WGz$XGz$z$Uz$NCz$GGz$YGz$z$ZGz$aGz$bGz$VFz$WFz$cGz$z$ZGz$dGz$eGz$fGz$VFz$WFz$cGz$z$ZGz$Nz$Oz$gGz$hGz$iGz$jGz$kGz$lGz$mGz$nGz$oGz$pGz$bGz$VFz$WFz$cGz$z$Uz$NCz$GGz$RGz$qGz$TGz$UGz$rGz$sGz$tGz$uGz$z$Uz$NCz$GGz$QGz$z$tEz$vGz$z$wGz$xGz$z$sBz$tFz$yGz$AHz$BHz$wBz$xBz$z$CHz$DHz$EHz$z$tEz$FHz$z$Az$Bz$z$GHz$qFz$rFz$HHz$wFz$IHz$JHz$KHz$LHz$MHz$NHz$OHz$mFz$z$PHz$QHz$RHz$vFz$wFz$xFz$yFz$AGz$BGz$CGz$SHz$THz$z$wGz$xGz$z$UHz$VHz$DHz$EHz$z$tEz$IFz$z$Az$Bz$z$KCz$dDz$z$Uz$NCz$GGz$HGz$WHz$XHz$YHz$ZHz$aHz$bHz$cHz$dHz$eHz$fHz$gHz$z$Uz$z$tEz$FHz$z$vDz$wDz$z$Tz$z$Az$Bz$z$KCz$dDz$z$Uz$NCz$GGz$hHz$iHz$jHz$kHz$lHz$mHz$nHz$LGz$oHz$pHz$z$Uz$z$Uz$z$tEz$IFz$z$vDz$wDz$z$Vz$z$Tz$z$Az$Bz$z$KCz$dDz$z$Uz$NCz$GGz$hHz$qHz$rHz$sHz$tHz$uHz$vHz$wHz$xHz$yHz$AIz$BIz$CIz$DIz$z$Uz$z$Uz$NCz$GGz$RGz$EIz$FIz$GIz$wBz$HIz$IIz$JIz$GIz$KIz$LIz$MIz$z$Uz$z$Vz"
-
