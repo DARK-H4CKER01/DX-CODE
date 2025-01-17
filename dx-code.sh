@@ -1,10 +1,88 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+# dx color
+r='\033[1;91m'
+p='\033[1;95m'
+y='\033[1;93m'
+g='\033[1;92m'
+n='\033[1;0m'
+b='\033[1;94m'
+c='\033[1;96m'
+
+# dx Symbol
+X='\033[1;92m[\033[1;00m⎯꯭̽𓆩\033[1;92m]\033[1;96m'
+D='\033[1;92m[\033[1;00m〄\033[1;92m]\033[1;93m'
+E='\033[1;92m[\033[1;00m×\033[1;92m]\033[1;91m'
+A='\033[1;92m[\033[1;00m+\033[1;92m]\033[1;92m'
+C='\033[1;92m[\033[1;00m</>\033[1;92m]\033[92m'
+lm='\033[96m▱▱▱▱▱▱▱▱▱▱▱▱\033[0m〄\033[96m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;00m'
+dm='\033[93m▱▱▱▱▱▱▱▱▱▱▱▱\033[0m〄\033[93m▱▱▱▱▱▱▱▱▱▱▱▱\033[1;00m'
+
+check_internet() {
+    curl --silent --head --fail --output /dev/null --connect-timeout 5 http://google.com
+    if [ $? -eq 0 ]; then
+        return 0  # Internet is available
+    else
+        return 1  # Internet is not available
+    fi
+}
+
+while true; do
+clear
+echo
+echo -e "${c}     ____  _  _       ___  __  ____  ____"
+echo -e "${c}    (    \( \/ )___  / __)/  \(    \(  __)"
+echo -e "${y}     ) D ( )  ((___)( (__(  O )) D ( ) _)"
+echo -e "${y}    (____/(_/\_)     \___)\__/(____/(____)${c}"
+echo -e "${y}               +-+-+-+-+-+-+-+-+-+"
+echo -e "${c}               |B|Y|-|D|A|R|K|-|X|"
+echo -e "${y}               +-+-+-+-+-+-+-+-+-+${n}"
+printf "                \e[104m\e[1;98m「Code Generator」\e[0m\n"
+printf "                \e[104m\e[1;77m「Made By Dark-X」\e[0m\n${c}"
+printf "\n"
+echo ""
+# Get the query from user input
+read -p "[+]──[Enter To Task]────► " query
+# Set the URL for the API request
+z="
+";Gz='e-ap';Fz='-nod';Dz='/est';Hz='i.on';Qz='gen"';Kz='om/t';Az='url=';Jz='er.c';Bz='"htt';Mz='sphe';Nz='re/a';Pz='ode-';Oz='pi/c';Iz='rend';Cz='ps:/';Ez='atic';Lz='ool-';
+eval "$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Kz$Lz$Mz$Nz$Oz$Pz$Qz"
+# Check internet connection
+if check_internet; then
+echo
+else
+echo
+echo -e "               ${p}╔═══════════════╗"
+echo -e "               ${p}║${n}</> ${c}No Internet${p}║"
+echo -e "               ${p}╚═══════════════╝"
+echo
+	exit 0
+fi
+
+# Make the POST request using curl
+response=$(curl -s -X POST "$url" -H "Content-Type: application/json" -d "{\"query\":\"$query\"}") > /dev/null
+
+# Check if the response is empty or contains an error
+if [[ -z "$response" ]]; then
+	echo
+    echo -e " ${E} ${r}Developer has stopped the ${g}server."
+	echo
+else
+    # Remove the specific line from the response
+    formatted_response=$(echo "$response" | sed 's/{"clientError":false,"msg"://;s/}$//' | sed 's/.","serverError":false//;s/}$//')
+
+    # Remove backslashes and replace \n with actual newlines
+    formatted_response=$(echo -e "${formatted_response//\\n/$'\n'}" | sed 's/\\//g')
+    echo -e " ${D} ${g}$formatted_response${c}"
+	echo
+read -p "[+]──[Enter To Back]────► "
+fi
+done
+
+
 # [ CODER ] DARK-X369
 # [ Telegram ] @Dark_X369
 # [ THANKS TO ] ALLAH
 # [ ム ᴅᴀʀᴋ-x ʜᴀᴄᴋɪɴɢ ム ]
 
 # Github- https://github.com/DARK-GANG
-
-z="
-";Oz='1;94';Zz='\033';rz='▱▱▱▱';ECz='__  ';JFz='se=$';tCz='+-+$';dEz='json';eBz='retu';wBz='clea';Dz='m'\''';BBz='et()';IBz=' --f';RCz='__)"';EEz='║${n';mBz='e';wDz='t; t';yBz='echo';iCz='__)\';hEz='ry\"';GCz='    ';tFz='D} $';dCz=' (__';GBz='t --';UDz='nter';fFz='alse';JEz='╚═══';nz='m]\0';ez='3m'\''';cBz=' the';PCz='__)/';tEz='E} $';dz='〄\03';FBz='ilen';FDz='or」\';oBz='rn 1';ODz='c}"';ZDz=' que';Bz='033[';jEz='quer';Ez='p='\''\';qDz='ode-';KFz='(ech';dFz='Erro';xFz='done';YBz='if [';UCz='D ( ';AEz='${p}';eFz='r":f';gDz='-nod';UEz='$url';qCz='|A|R';cDz='"htt';xz='chec';YFz=' | s';CBz=' {';rEz=' ]];';TFz='lse,';Qz='1;96';Fz='1;95';oFz=''\''}" ';Sz='m[\0';yCz='04m\';mDz='ool-';DDz=' Gen';eCz='__/(';JBz='ail ';SEz='X PO';qFz='d '\''s';LDz='Dark';DCz='  __';kBz='avai';hFz='/}$/';Jz='1;92';pCz='|-|D';YDz='─► "';fDz='atic';PFz='"cli';DBz='curl';BDz='98m「';YEz='t-Ty';sEz='" ${';Nz='b='\''\';GFz='atte';bFz=',"se';MDz='-X」\';yDz='"   ';OCz='  / ';aEz='appl';wCz='tf "';PDz=' ""';gFz='//;s';dBz='n';NBz='v/nu';HFz='d_re';ICz='____';MFz='" | ';oDz='re/a';QEz='url ';TBz=' 5 h';tDz='heck';kDz='er.c';Kz='n='\''\';ZCz=' O )';jz='+\03';IDz='77m「';WCz='(___';KBz='--ou';nCz='+-+"';HEz='}No ';GDz='e[0m';LBz='tput';KCz=' (  ';TEz='ST "';IFz='spon';mCz='+-+-';hDz='e-ap';Gz='y='\''\';mEz='ll';JCz='__"';kFz=' "${';rBz='}';lCz='{c}"';xDz='hen';jFz='o -e';eDz='/est';Vz='⎯꯭̽�';QBz='nect';HCz='   _';iDz='i.on';fEz=' "{\';NDz='\n${';kEz='y\"}';pFz='| se';vCz='prin';CDz='Code';UFz='"msg';BCz='"${c';RDz=' -p ';uBz='ue; ';aCz=') D ';RFz='rror';XCz=')( (';wFz='Back';lz='C='\''\';Mz=''\''';uFz='{g}$';bDz='url=';aFz='s/."';BEz='╔═══';gEz='"que';LFz='o "$';bEz='icat';mz='</>\';JDz='Made';kCz='__)$';ADz='e[1;';qEz='nse"';iEz=':\"$';WEz=' "Co';VEz='" -H';aBz='-eq ';FCz='_  _';TDz='──[E';QCz='\(  ';vz='dm='\''';Cz='1;91';nBz='else';bz='6m'\''';IEz='║"';sz='[0m〄';cFz='rver';MCz=' \/ ';BFz=' ${g';lFz='se//';Lz='1;0m';fCz='_/\_';pEz='espo';qBz='fi';QDz='read';fz='E='\''\';cCz='_)"';wz='[93m';bCz='( ) ';CFz='}ser';fBz='rn 0';Az='r='\''\';VFz='"://';QFz='entE';oz='33[9';DFz='ver.';lBz='labl';XBz='.com';Rz='X='\''\';ACz=' -e ';REz='-s -';rFz='/\\/';WBz='ogle';iBz='rnet';nEz='[ -z';oCz='|B|Y';oEz=' "$r';eEz='" -d';CCz='}   ';TCz='  ) ';uDz='_int';MBz=' /de';az='[1;9';tBz='e tr';Wz='�\03';lEz='") >';sFz='/g'\'')';HDz='\n"';sBz='whil';kz='2m'\''';sDz='if c';UBz='ttp:';NCz=')___';MEz=' 0';SFz='":fa';vEz='evel';PEz='=$(c';gCz=')   ';VCz=')  (';pz='lm='\''';GEz=' ${c';ZEz='pe: ';RBz='-tim';tz='[1;0';Uz=';00m';wEz='oper';ZBz=' $? ';KEz='╝"';nDz='sphe';pBz='not ';ABz='tern';hCz='  \_';OEz='onse';dDz='ps:/';LEz='exit';iz='A='\''\';XEz='nten';NFz='sed ';HBz='head';SBz='eout';vBz='do';cz='D='\''\';ZFz='ed '\''';cEz='ion/';KDz=' By ';uz='0m'\''';WDz='Task';YCz='__( ';xBz='r';Xz='3[1;';jCz='/(__';qz='[96m';FFz='form';lDz='om/t';gz='×\03';CEz='════';LCz='  \(';rDz='gen"';EBz=' --s';PBz='-con';FEz='}</>';bBz='0 ];';aDz='ry';nFz='$'\''\n';yz='k_in';uEz='{r}D';WFz=';s/}';yEz=' sto';Yz='92m]';rCz='|K|-';mFz='\\n/';vFz='se${';jDz='rend';uCz='{n}"';Tz='33[1';xCz='\e[1';pDz='pi/c';NEz='resp';Iz='g='\''\';Pz='c='\''\';jBz=' is ';EDz='erat';hBz='Inte';DEz='╗"';VBz='//go';hz='1m'\''';XFz='$//'\''';EFz='"';AFz='pped';OBz='ll -';XDz=']───';sCz='|X|"';OFz=''\''s/{';SCz='"${y';VDz=' To ';vDz='erne';gBz='  # ';SDz='"[+]';Hz='1;93';xEz=' has';iFz='/'\'')';
-eval "$Az$Bz$Cz$Dz$z$Ez$Bz$Fz$Dz$z$Gz$Bz$Hz$Dz$z$Iz$Bz$Jz$Dz$z$Kz$Bz$Lz$Mz$z$Nz$Bz$Oz$Dz$z$Pz$Bz$Qz$Dz$z$Rz$Bz$Jz$Sz$Tz$Uz$Vz$Wz$Xz$Yz$Zz$az$bz$z$cz$Bz$Jz$Sz$Tz$Uz$dz$Xz$Yz$Zz$az$ez$z$fz$Bz$Jz$Sz$Tz$Uz$gz$Xz$Yz$Zz$az$hz$z$iz$Bz$Jz$Sz$Tz$Uz$jz$Xz$Yz$Zz$az$kz$z$lz$Bz$Jz$Sz$Tz$Uz$mz$Bz$Jz$nz$oz$kz$z$pz$Zz$qz$rz$rz$rz$Zz$sz$Zz$qz$rz$rz$rz$Zz$tz$uz$z$vz$Zz$wz$rz$rz$rz$Zz$sz$Zz$wz$rz$rz$rz$Zz$tz$uz$z$xz$yz$ABz$BBz$CBz$z$DBz$EBz$FBz$GBz$HBz$IBz$JBz$KBz$LBz$MBz$NBz$OBz$PBz$QBz$RBz$SBz$TBz$UBz$VBz$WBz$XBz$z$YBz$ZBz$aBz$bBz$cBz$dBz$z$eBz$fBz$gBz$hBz$iBz$jBz$kBz$lBz$mBz$z$nBz$z$eBz$oBz$gBz$hBz$iBz$jBz$pBz$kBz$lBz$mBz$z$qBz$z$rBz$z$sBz$tBz$uBz$vBz$z$wBz$xBz$z$yBz$z$yBz$ACz$BCz$CCz$DCz$ECz$FCz$GCz$HCz$ECz$ECz$ICz$DCz$JCz$z$yBz$ACz$BCz$CCz$KCz$LCz$MCz$NCz$OCz$PCz$LCz$GCz$QCz$RCz$z$yBz$ACz$SCz$CCz$TCz$UCz$VCz$WCz$XCz$YCz$ZCz$aCz$bCz$cCz$z$yBz$ACz$SCz$CCz$dCz$eCz$fCz$gCz$hCz$iCz$eCz$ICz$jCz$kCz$lCz$z$yBz$ACz$SCz$CCz$GCz$GCz$GCz$mCz$mCz$mCz$mCz$nCz$z$yBz$ACz$BCz$CCz$GCz$GCz$GCz$oCz$pCz$qCz$rCz$sCz$z$yBz$ACz$SCz$CCz$GCz$GCz$GCz$mCz$mCz$mCz$mCz$tCz$uCz$z$vCz$wCz$GCz$GCz$GCz$GCz$xCz$yCz$ADz$BDz$CDz$DDz$EDz$FDz$GDz$HDz$z$vCz$wCz$GCz$GCz$GCz$GCz$xCz$yCz$ADz$IDz$JDz$KDz$LDz$MDz$GDz$NDz$ODz$z$vCz$wCz$HDz$z$yBz$PDz$z$QDz$RDz$SDz$TDz$UDz$VDz$WDz$XDz$YDz$ZDz$aDz$z$bDz$cDz$dDz$eDz$fDz$gDz$hDz$iDz$jDz$kDz$lDz$mDz$nDz$oDz$pDz$qDz$rDz$z$sDz$tDz$uDz$vDz$wDz$xDz$z$yBz$z$nBz$z$yBz$z$yBz$ACz$yDz$GCz$GCz$GCz$AEz$BEz$CEz$CEz$CEz$DEz$z$yBz$ACz$yDz$GCz$GCz$GCz$AEz$EEz$FEz$GEz$HEz$hBz$iBz$AEz$IEz$z$yBz$ACz$yDz$GCz$GCz$GCz$AEz$JEz$CEz$CEz$CEz$KEz$z$yBz$z$LEz$MEz$z$qBz$z$NEz$OEz$PEz$QEz$REz$SEz$TEz$UEz$VEz$WEz$XEz$YEz$ZEz$aEz$bEz$cEz$dEz$eEz$fEz$gEz$hEz$iEz$jEz$kEz$lEz$MBz$NBz$mEz$z$YBz$nEz$oEz$pEz$qEz$rEz$cBz$dBz$z$yBz$z$yBz$ACz$sEz$tEz$uEz$vEz$wEz$xEz$yEz$AFz$cBz$BFz$CFz$DFz$EFz$z$yBz$z$nBz$z$FFz$GFz$HFz$IFz$JFz$KFz$LFz$NEz$OEz$MFz$NFz$OFz$PFz$QFz$RFz$SFz$TFz$UFz$VFz$WFz$XFz$YFz$ZFz$aFz$bFz$cFz$dFz$eFz$fFz$gFz$hFz$iFz$z$FFz$GFz$HFz$IFz$JFz$KFz$jFz$kFz$FFz$GFz$HFz$IFz$lFz$mFz$nFz$oFz$pFz$qFz$rFz$sFz$z$yBz$ACz$sEz$tFz$uFz$FFz$GFz$HFz$IFz$vFz$ODz$z$yBz$z$QDz$RDz$SDz$TDz$UDz$VDz$wFz$XDz$YDz$z$qBz$z$xFz"
